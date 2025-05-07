@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aturan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 20px; /* Tambahkan jarak antar elemen */
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Tambahkan margin bawah */
+            font-size: 24px;
+            color: #333;
+        }
+
+        .bungkus {
+            background-color: #f0f0f0;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .input {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .persen {
+            height: 30px;
+            background-color: lightgray;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        input {
+            padding: 20px;
+            border: 1px solid gainsboro;
+            border-radius: 20px;
+            width: 80%;
+        }
+
+        .all {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(48, 48, 216);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Coba kamu isi dong</h1>
+    <p>ini buat aku biar aku bisa ngatur kmu maunya gmna</p>
+    <div class="all">
+        <div class="input">
+            <h2>Berapa persen</h2>
+            <label for="angka1">Nanya kabar</label>
+            <input type="number" placeholder="Input angka 0-100" id="angka1" min="0" max="100">
+            <label for="angka2">Chat tiap hari</label>
+            <input type="number" placeholder="Input angka 0-100" id="angka2" min="0" max="100">
+            <label for="angka3">Cuek</label>
+            <input type="number" placeholder="Input angka 0-100" id="angka3" min="0" max="100">
+            <label for="angka4">Ngasih tau lagi ngapain</label>
+            <input type="number" placeholder="Input angka 0-100" id="angka4" min="0" max="100">
+            <label for="angka5">Gaboleh diganggu</label>
+            <input type="number" placeholder="Input angka 0-100" id="angka5" min="0" max="100">
+            <button type="button" onclick="submit()">Click</button>
+        </div>
+        
+        <div class="bungkus">
+            <h2>Persen</h2>
+            <label for="persen1">Nanya kabar</label>
+            <div id="persen1" class="persen"></div>
+            <label for="persen2">Chat tiap hari</label>
+            <div id="persen2" class="persen"></div>
+            <label for="persen3">Cuek</label>
+            <div id="persen3" class="persen"></div>
+            <label for="persen4">Ngasih tau lagi ngapain</label>
+            <div id="persen4" class="persen"></div>
+            <label for="persen5">Gaboleh diganggu</label>
+            <div id="persen5" class="persen"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function submit() {
+        const inputs = [
+            parseInt(document.getElementById("angka1").value),
+            parseInt(document.getElementById("angka2").value),
+            parseInt(document.getElementById("angka3").value),
+            parseInt(document.getElementById("angka4").value),
+            parseInt(document.getElementById("angka5").value)
+        ];
+
+        for (let angka of inputs) {
+            if (isNaN(angka) || angka < 0 || angka > 100) {
+                alert("Masukin angka bebas");
+                return;
+            }
+        }
+
+        inputs.forEach((angka, index) => {
+            const persen = document.getElementById(`persen${index + 1}`);
+            persen.style.width = angka + "%";
+            persen.style.background = angka <= 50 ? 'red' : 'green';
+        });
+    }
+</script>
+</html>
